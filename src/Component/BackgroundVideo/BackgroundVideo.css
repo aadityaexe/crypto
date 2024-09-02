@@ -1,0 +1,16 @@
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.relative-container {
+  position: relative;
+  z-index: 10;
+  color: white;
+  padding: 8px;
+}
