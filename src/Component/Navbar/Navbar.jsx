@@ -1,9 +1,6 @@
 const Navbar = () => {
   return (
-    <nav
-      id="nav"
-      className=" fixed top-0 w-full bg-transparent backdrop-blur-md z-50"
-    >
+    <nav className=" fixed top-0 w-full bg-transparent backdrop-blur-md z-50">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <div className="text-yellow-500 flex font-bold text-xl">
