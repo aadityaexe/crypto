@@ -1,6 +1,55 @@
-import { useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useState, useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const dateRef = useRef();
+
+  useEffect(() => {
+    // Convert the children of dateRef to an array
+    const dateElements = gsap.utils.toArray(dateRef.current.children);
+
+    // GSAP animations
+    gsap.to("#h1Text", {
+      x: -2080,
+      duration: 6,
+      scrollTrigger: {
+        trigger: "#h1Text",
+        start: "top 20%",
+        end: "bottom 10%",
+        scrub: true,
+        ease: "power2.inOut",
+      },
+    });
+
+    gsap.to("#para", {
+      x: 2080,
+      duration: 6,
+      scrollTrigger: {
+        trigger: "#para",
+        start: "top 20%",
+        end: "bottom 10%",
+        scrub: true,
+        ease: "power2.inOut",
+      },
+    });
+
+    dateElements.forEach((span) => {
+      gsap.to(span, {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: span,
+          start: "top 15%",
+          end: "bottom 10%",
+          scrub: true,
+          ease: "power2.inOut",
+        },
+      });
+    });
+  }, []);
+
   const [timeLeft, setTimeLeft] = useState({
     days: 160,
     hours: 6,
@@ -39,12 +88,17 @@ const Hero = () => {
   }, [timeLeft]);
 
   return (
-    <div className=" text-white font-sans flex flex-col justify-center items-center h-screen overflow-hidden">
-      <h1 className="text-4xl font-bold mb-8">
+    <div
+      ref={dateRef}
+      className="text-white font-sans flex flex-col justify-center items-center h-screen overflow-hidden"
+    >
+      <h1 id="h1Text" className="text-4xl font-bold mb-8">
         Token creative of CoinEX Theme
       </h1>
-      <p className="mb-8">Coinex on the ethereum ERC20 blockchain</p>
-      <div className="grid grid-cols-4 gap-4">
+      <p id="para" className="mb-8">
+        Coinex on the ethereum ERC20 blockchain
+      </p>
+      <div id="date" className="grid grid-cols-4 gap-4">
         <div className="flex flex-col items-center">
           <span className="text-6xl font-bold">{timeLeft.days}</span>
           <span>Days</span>
