@@ -1,3 +1,6 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 /* eslint-disable react/prop-types */
 const FeatureCard = ({ icon, title, description }) => {
   return (
@@ -12,6 +15,37 @@ const FeatureCard = ({ icon, title, description }) => {
 };
 
 const CryptoFeatures = () => {
+  useGSAP(() => {
+    gsap.to("#featuH1", {
+      opacity: 0,
+      duration: 5,
+
+      scrollTrigger: {
+        trigger: "#featuH1",
+        scrub: true,
+        start: "top 25%",
+        end: "bottom 20%",
+        markers: true,
+      },
+    }),
+      gsap.to("#card", {
+        x: 3000,
+        duration: 3,
+        stagger: {
+          from: "center",
+          each: 1,
+          duration: 6,
+        },
+        scrollTrigger: {
+          trigger: "#card",
+          scrub: true,
+          start: "top 15%",
+          end: "bottom 20%",
+          markers: true,
+        },
+      });
+  }, []);
+
   const features = [
     {
       icon: "https://img.icons8.com/color/48/000000/mining.png",
@@ -41,10 +75,16 @@ const CryptoFeatures = () => {
 
   return (
     <section className="container mx-auto py-16">
-      <h2 className="text-3xl font-bold text-center text-white mb-10">
+      <h2
+        id="featuH1"
+        className="text-3xl font-bold text-center text-white mb-10"
+      >
         The Crypto Features
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div
+        id="card"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
         {features.map((feature) => (
           <FeatureCard
             key={feature.title}

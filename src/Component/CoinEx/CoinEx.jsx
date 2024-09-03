@@ -70,7 +70,6 @@ const CoinEx = () => {
           start: "top 75%",
           end: "bottom 20%",
           scrub: true,
-          markers: true,
         },
       });
   }, []);
